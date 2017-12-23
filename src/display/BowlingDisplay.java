@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Dimension;
 
@@ -69,15 +70,7 @@ public class BowlingDisplay {
 	 * Creates the application with names from nameInput
 	 */
 	public BowlingDisplay(ArrayList<String> playerNames) {
-		initialize();
 		tracker = new GameTracker(playerNames);
-		frame.setVisible(true);
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
 
 		// Creates the window and sets size
 		frame = new JFrame();
@@ -98,9 +91,9 @@ public class BowlingDisplay {
 		scoreContainer.setLayout(null);
 
 		// Creates the game frame
-//		final GameDisplay newGame = new GameDisplay();
-//		newGame.setBounds(0, 0, 0, 0);
-//		scoreContainer.add(newGame);
+		GameDisplay newGame = new GameDisplay(playerNames.get(0));
+		newGame.panel.setBounds(0, 0, 0, 0);
+		scoreContainer.add(newGame.panel);
 
 		// Resizes internal components when entire frame is resized
 		frame.addComponentListener(new ComponentListener() {
@@ -153,6 +146,7 @@ public class BowlingDisplay {
 			public void keyPressed(KeyEvent e) {
 			}
 		});
+		frame.setVisible(true);
 	}
 
 	//

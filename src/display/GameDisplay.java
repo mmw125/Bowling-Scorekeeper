@@ -14,10 +14,11 @@ import javax.swing.SwingConstants;
 
 public class GameDisplay {
 	private JPanel frameContainer;
-	private JPanel panel;
+	public JPanel panel;
 	private String playerName;
 
 	GameDisplay(String playerName) {
+		System.out.println("Creating display for " + playerName);
 		this.playerName = playerName;
 		init();
 	}
@@ -35,6 +36,7 @@ public class GameDisplay {
 		JLabel playerLabel = new JLabel(playerName.charAt(0) + "");
 		playerLabel.setForeground(Color.WHITE);
 		playerLabel.setBackground(SystemColor.activeCaptionBorder);
+		// playerLabel.setBackground(Color.BLUE);
 		playerLabel.setSize(new Dimension(100, 0));
 		playerLabel.setFont(new Font("Tahoma", Font.PLAIN, 45));
 		letterName.add(playerLabel);
