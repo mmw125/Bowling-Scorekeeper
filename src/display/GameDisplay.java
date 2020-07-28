@@ -36,7 +36,7 @@ public class GameDisplay {
 		JLabel playerLabel = new JLabel(playerName.charAt(0) + "");
 		playerLabel.setForeground(Color.WHITE);
 		playerLabel.setBackground(SystemColor.activeCaptionBorder);
-		// playerLabel.setBackground(Color.BLUE);
+		 playerLabel.setBackground(Color.BLUE);
 		playerLabel.setSize(new Dimension(100, 0));
 		playerLabel.setFont(new Font("Tahoma", Font.PLAIN, 45));
 		letterName.add(playerLabel);

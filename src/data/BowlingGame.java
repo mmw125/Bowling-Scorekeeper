@@ -17,7 +17,7 @@ public class BowlingGame {
 	}
 
 	private void init(){
-		frames = new ArrayList<Frame>(10);
+		frames = new ArrayList<>(10);
 		Frame frame = new Frame();
 		frames.add(frame);
 		for(int i = 1; i < 9; i++){

@@ -11,7 +11,7 @@ public class GameTracker {
 	 * @param playerNames the names to load into the tracker
 	 */
 	public GameTracker(ArrayList<String> playerNames){
-		games = new ArrayList<BowlingGame>();
+		games = new ArrayList<>();
 		if(playerNames != null){
 			for(String s : playerNames){
 				games.add(new BowlingGame(s));
