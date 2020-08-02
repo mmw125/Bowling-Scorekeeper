@@ -39,8 +39,8 @@ public class BowlingDisplay {
 	 * PlayerName Background and Final Score Background 2 = PlayerName Text
 	 * Color and Final Score Text Background 3 = Frame Top Background 4 = Frame
 	 * Top Text Color 5 = Frame Bottom Background 6 = Frame Bottom Text Color
-	 */
-	//private Color[] colors;
+     **/
+    private Color[] colors;
 
 	/**
 	 * The frame that everything is put into
@@ -57,23 +57,24 @@ public class BowlingDisplay {
 			try {
 				ArrayList<String> names = new ArrayList<>();
 				names.add("Mark");
+                names.add("Other");
 				BowlingDisplay window = new BowlingDisplay(names);
 				window.frame.setVisible(true);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-
 		});
 	}
 
 	/**
 	 * Creates the application with names from nameInput
 	 */
-	public BowlingDisplay(ArrayList<String> playerNames) {
+    BowlingDisplay(ArrayList<String> playerNames) {
 		tracker = new GameTracker(playerNames);
 
 		// Creates the window and sets size
 		frame = new JFrame();
+        frame.setTitle("Bowling Scorekeeper");
 		frame.setMinimumSize(new Dimension(600, 175));
 		frame.setBounds(100, 100, 901, 211);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -88,12 +89,14 @@ public class BowlingDisplay {
 		scoreContainer.setBounds(10, 25, frame.getSize().width - 40,
 				frame.getSize().height - 70);
 		frame.getContentPane().add(scoreContainer);
-		scoreContainer.setLayout(new GridLayout(1, 1));
+        scoreContainer.setLayout(new GridLayout(playerNames.size(), 1));
 
 		// Creates the game frame
-		GameDisplay newGame = new GameDisplay(playerNames.get(0));
-		newGame.panel.setBounds(0, 0, 0, 0);
-		scoreContainer.add(newGame.panel);
+        for (String name : playerNames) {
+            GameDisplay newGame = new GameDisplay(name);
+            newGame.panel.setBounds(0, 0, 0, 0);
+            scoreContainer.add(newGame.panel);
+        }
 
 		// Resizes internal components when entire frame is resized
 		frame.addComponentListener(new ComponentListener() {
@@ -148,47 +151,6 @@ public class BowlingDisplay {
 			}
 		});
 		frame.setVisible(true);
-
-
-//		JPanel frameOne = new JPanel();
-//		frameOne.setBorder(new LineBorder(new Color(0, 0, 0)));
-//		add(frameOne);
-//		setLayout(new GridLayout(0, 1, 0, 0));
-//
-//		 JPanel frameOneIndividualContainer = new JPanel();
-//		 frameOneIndividualContainer.setBackground(Color.CYAN);
-//		 add(frameOneIndividualContainer);
-//		 frameOneIndividualContainer
-//		 .setLayout(new GridLayout(1, 0, 0, 0));
-//
-//		 // setLayout(new GridLayout(1, 0, 0, 0));
-//
-//		 JLabel firstBall = new JLabel("1");
-//		 firstBall.setFont(new Font("Tahoma", Font.PLAIN, 20));
-//		 firstBall.setHorizontalAlignment(SwingConstants.CENTER);
-//		 frameOneIndividualContainer.add(firstBall);
-//
-//		 JLabel secondBall = new JLabel("2");
-//		 secondBall.setHorizontalAlignment(SwingConstants.CENTER);
-//		 secondBall.setFont(new Font("Tahoma", Font.PLAIN, 20));
-//		 frameOneIndividualContainer.add(secondBall);
-//
-//		 JLabel thirdBall = new JLabel("3");
-//		 thirdBall.setHorizontalAlignment(SwingConstants.CENTER);
-//		 thirdBall.setFont(new Font("Tahoma", Font.PLAIN, 20));
-//		 frameOneIndividualContainer.add(thirdBall);
-//
-//		 JPanel subtotal = new JPanel();
-//		 subtotal.setBackground(Color.BLUE);
-//		 add(subtotal);
-//
-//		 JLabel label_10 = new JLabel("S");
-//		 label_10.setForeground(Color.WHITE);
-//		 label_10.setBackground(Color.WHITE);
-//		 label_10.setHorizontalAlignment(SwingConstants.CENTER);
-//		 label_10.setFont(new Font("Tahoma", Font.BOLD, 20));
-//		 subtotal.add(label_10);
-
 	}
 
 

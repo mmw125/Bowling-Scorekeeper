@@ -19,7 +19,7 @@ class FrameDisplay extends JPanel {
 	/**
 	 * Default constructor
 	 */
-	public FrameDisplay() {
+	FrameDisplay() {
 		init();
 	}
 
@@ -31,8 +31,6 @@ class FrameDisplay extends JPanel {
 		frameOneIndividualContainer.setBackground(Color.CYAN);
 		add(frameOneIndividualContainer);
 		frameOneIndividualContainer.setLayout(new GridLayout(1, 0, 0, 0));
-
-		// setLayout(new GridLayout(1, 0, 0, 0));
 
 		firstBall = new JLabel("");
 		firstBall.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -58,6 +56,5 @@ class FrameDisplay extends JPanel {
 
 	public void setSubtotal(int i) {
 		subtotalLabel.setText(i + "");
-
 	}
 }

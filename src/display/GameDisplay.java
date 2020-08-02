@@ -1,21 +1,16 @@
 package display;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.GridLayout;
-import java.awt.SystemColor;
+import java.awt.*;
+import java.util.ArrayList;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 public class GameDisplay {
-	private JPanel frameContainer;
-	public JPanel panel;
+	JPanel panel;
 	private String playerName;
+	private ArrayList<FrameDisplay> frames = new ArrayList<>();
 
 	GameDisplay(String playerName) {
 		System.out.println("Creating display for " + playerName);
@@ -35,8 +30,6 @@ public class GameDisplay {
 
 		JLabel playerLabel = new JLabel(playerName.charAt(0) + "");
 		playerLabel.setForeground(Color.WHITE);
-		playerLabel.setBackground(SystemColor.activeCaptionBorder);
-		 playerLabel.setBackground(Color.BLUE);
 		playerLabel.setSize(new Dimension(100, 0));
 		playerLabel.setFont(new Font("Tahoma", Font.PLAIN, 45));
 		letterName.add(playerLabel);
@@ -57,13 +50,15 @@ public class GameDisplay {
 		JPanel frameContainer = new JPanel();
 		panel.add(frameContainer, BorderLayout.CENTER);
 		frameContainer.setLayout(new GridLayout(1, 1, 0, 0));
+
+		for (int i = 0; i < 10; i++) {
+			FrameDisplay frameDisplay = new FrameDisplay();
+			frameContainer.add(frameDisplay);
+			frames.add(frameDisplay);
+		}
 	}
-	
-	/**
-	 * Adds a panel to the panel in the 
-	 * @param panel the panel to add
-	 */
-	public void addPanel(JPanel panel){
-		frameContainer.add(panel);
+
+	public FrameDisplay getFrame(int frame) {
+		return frames.get(frame);
 	}
 }
