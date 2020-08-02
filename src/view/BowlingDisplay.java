@@ -1,4 +1,4 @@
-package display;
+package view;
 
 import java.awt.EventQueue;
 
@@ -17,7 +17,6 @@ import java.awt.Font;
 import java.awt.Dimension;
 
 import javax.swing.SwingConstants;
-import javax.swing.border.LineBorder;
 
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
@@ -25,7 +24,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
-import data.GameTracker;
+import controller.GameTracker;
 
 /**
  * The class that displays the game and takes input
@@ -33,45 +32,18 @@ import data.GameTracker;
  * @author Mark Wiggans
  */
 public class BowlingDisplay {
-
-	/**
-	 * Holds all of the colors for the program 0 = Background Color 1 =
-	 * PlayerName Background and Final Score Background 2 = PlayerName Text
-	 * Color and Final Score Text Background 3 = Frame Top Background 4 = Frame
-	 * Top Text Color 5 = Frame Bottom Background 6 = Frame Bottom Text Color
-     **/
-    private Color[] colors;
-
 	/**
 	 * The frame that everything is put into
 	 */
 	private JFrame frame;
 
-	private GameTracker tracker;
-
-	/**
-	 * Launches the application
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(() -> {
-			try {
-				ArrayList<String> names = new ArrayList<>();
-				names.add("Mark");
-                names.add("Other");
-				BowlingDisplay window = new BowlingDisplay(names);
-				window.frame.setVisible(true);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		});
-	}
+	private final GameTracker tracker;
 
 	/**
 	 * Creates the application with names from nameInput
 	 */
-    BowlingDisplay(ArrayList<String> playerNames) {
-		tracker = new GameTracker(playerNames);
-
+	public BowlingDisplay(GameTracker tracker, ArrayList<String> playerNames) {
+		this.tracker = tracker;
 		// Creates the window and sets size
 		frame = new JFrame();
         frame.setTitle("Bowling Scorekeeper");
@@ -79,6 +51,7 @@ public class BowlingDisplay {
 		frame.setBounds(100, 100, 901, 211);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		frame.setVisible(true);
 
 		// Creates the number line across the top
 		final NumberRow topReferenceNumbers = new NumberRow();
@@ -100,50 +73,35 @@ public class BowlingDisplay {
 
 		// Resizes internal components when entire frame is resized
 		frame.addComponentListener(new ComponentListener() {
+			@Override
+			public void componentResized(ComponentEvent arg0) {
+				scoreContainer.setBounds(10, 25, frame.getSize().width - 35,
+						frame.getSize().height - 70);
+				topReferenceNumbers.setBounds(10, 10,
+						frame.getSize().width - 35, 15);
+			}
 
 			@Override
 			public void componentShown(ComponentEvent arg0) {
 			}
 
 			@Override
-			public void componentResized(ComponentEvent arg0) {
-				scoreContainer.setBounds(10, 25, frame.getSize().width - 35,
-						frame.getSize().height - 70);
-//				newGame.setBounds(0, 0, scoreContainer.getSize().width, 100);
-				topReferenceNumbers.setBounds(10, 10,
-						frame.getSize().width - 35, 15);
-			}
-
-			@Override
 			public void componentMoved(ComponentEvent arg0) {
-
 			}
 
 			@Override
 			public void componentHidden(ComponentEvent arg0) {
-
 			}
 		});
 
 		frame.addKeyListener(new KeyListener() {
 
 			public void keyTyped(KeyEvent e) {
-				System.out.println("Got " + e.getKeyChar());
-				if (e.getKeyChar() == '0' || e.getKeyChar() == '1'
-						|| e.getKeyChar() == '2' || e.getKeyChar() == '3'
-						|| e.getKeyChar() == '4' || e.getKeyChar() == '5'
-						|| e.getKeyChar() == '6' || e.getKeyChar() == '7'
-						|| e.getKeyChar() == '8' || e.getKeyChar() == '9'
-						|| e.getKeyChar() == '*' || e.getKeyChar() == '/'
-						|| e.getKeyChar() == '-') {
-					// newGame.addData(e.getKeyChar());
-					tracker.addData(e.getKeyChar());
-				}
+				tracker.addData(e.getKeyChar());
 			}
 
 			@Override
 			public void keyReleased(KeyEvent e) {
-
 			}
 
 			@Override

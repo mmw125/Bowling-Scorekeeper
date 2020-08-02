@@ -1,4 +1,4 @@
-package display;
+package view;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -24,7 +24,7 @@ class FrameDisplay extends JPanel {
 	}
 
 	private void init() {
-		setBorder(new LineBorder(new Color(0, 0, 0)));
+		setBorder(new LineBorder(Color.BLACK));
 		setLayout(new GridLayout(0, 1, 0, 0));
 
 		JPanel frameOneIndividualContainer = new JPanel();

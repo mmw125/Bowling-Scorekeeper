@@ -1,4 +1,4 @@
-package display;
+package view;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
 
 public class GameDisplay {
 	JPanel panel;
@@ -24,6 +25,7 @@ public class GameDisplay {
 		panel.setLayout(new BorderLayout(0, 0));
 
 		JPanel letterName = new JPanel();
+		letterName.setBorder(new LineBorder(Color.BLACK));
 		letterName.setBackground(Color.BLUE);
 		letterName.setPreferredSize(new Dimension(100, 10));
 		panel.add(letterName, BorderLayout.WEST);
@@ -60,5 +62,9 @@ public class GameDisplay {
 
 	public FrameDisplay getFrame(int frame) {
 		return frames.get(frame);
+	}
+
+	public String getName() {
+		return playerName;
 	}
 }
