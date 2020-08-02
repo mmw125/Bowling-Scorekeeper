@@ -85,22 +85,6 @@ public class Frame {
 	 * @return the score on the bottom
 	 */
 	private Optional<Integer> calculateScore() {
-		int previous = previousFrame.flatMap(Frame::calculateScore).orElse(0);
-
-		if (firstRoll.isPresent()) {
-			if (firstRoll.get() == 10) {
-				return Optional.of(previous + 10 + getNextTwoRolls());
-			} else if (secondRoll.isPresent()) {
-				int upToThis = firstRoll.get() + secondRoll.get() + previous;
-				if (firstRoll.get() + secondRoll.get() == 10) {
-					return Optional.of(upToThis + getNextRoll());
-				} else {
-					return Optional.of(upToThis);
-				}
-			} else {
-				return Optional.of(previous + firstRoll.get());
-			}
-		}
 		return Optional.empty();
 	}
 	
