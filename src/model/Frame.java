@@ -112,32 +112,7 @@ public class Frame {
 	 * @return true if it can progress to the next frame
 	 */
 	public boolean addData(char c) {
-		int value;
-		if (c == '0' || c == '1' || c == '2' || c == '3' || c == '4' || c == '5' || c == '6' || c == '7'
-				|| c == '8' || c == '9') {
-			value = c - '0';
-		} else if (c == '*' || c == 'x' || c == 'X') {
-			value = 10;
-		} else if (c == '/') {
-			value = 10 - firstRoll.orElse(0);
-		} else if (c == '-') {
-			value = 0;
-		} else {
-			return false;
-		}
-		if (firstRoll.isEmpty()) {
-			setFirstRoll(value);
-			if (value == 10) {
-				return true;
-			}
-			return false;
-		}
-
-		int first = firstRoll.get();
-		if (value + first > 10) {
-			return false;
-		}
-		setSecondRoll(value);
+        setFirstRoll(10);
 		return true;
 	}
 }
