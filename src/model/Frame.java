@@ -85,7 +85,7 @@ public class Frame {
 	 * @return the score on the bottom
 	 */
 	private Optional<Integer> calculateScore() {
-		// TODO: Implement
+		// TODO(chloe): Implement
 		return Optional.empty();
 	}
 	
@@ -109,12 +109,12 @@ public class Frame {
 	}
 
 	/**
+	 * Updates the rolls based on the player input.
 	 * @param c key that was pressed
 	 * @return true if it can progress to the next frame
 	 */
 	public boolean addData(char c) {
-		// TODO: Implement
-        setFirstRoll(10);
+		// TODO(chloe): Implement
 		return true;
 	}
 }

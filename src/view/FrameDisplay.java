@@ -7,7 +7,7 @@ import java.awt.GridLayout;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 
-class FrameDisplay extends JPanel {
+public class FrameDisplay extends JPanel {
 	/**
 	 * These can represent the first nine frames of a game
 	 */
@@ -54,7 +54,15 @@ class FrameDisplay extends JPanel {
 		subtotal.add(subtotalLabel);
 	}
 
-	public void setSubtotal(int i) {
-		subtotalLabel.setText(i + "");
+	public void setSubtotal(String subtotal) {
+		subtotalLabel.setText(subtotal);
+	}
+
+	public void setFirstBall(String ball) {
+		firstBall.setText(ball);
+	}
+
+	public void setSecondBall(String ball) {
+		secondBall.setText(ball);
 	}
 }

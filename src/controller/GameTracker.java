@@ -1,7 +1,10 @@
 package controller;
 
 import model.BowlingGame;
+import model.Frame;
 import view.BowlingDisplay;
+import view.FrameDisplay;
+import view.GameDisplay;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -15,8 +18,8 @@ public class GameTracker {
         EventQueue.invokeLater(() -> {
             try {
                 ArrayList<String> names = new ArrayList<>();
-                names.add("Mark");
-                names.add("Other");
+                names.add("Foo");
+                names.add("Bar");
                 new GameTracker(names);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -43,7 +46,6 @@ public class GameTracker {
         if (progress) {
             advance();
         }
-
         updateDisplay();
 	}
 	
@@ -60,6 +62,16 @@ public class GameTracker {
     }
 
     private void updateDisplay() {
-
+        for (int i = 0; i < games.size(); i++) {
+            BowlingGame bowlingGame = games.get(i);
+            GameDisplay gameDisplay = display.getGameDisplay(i);
+            for (int j = 0; j < 10; j++) {
+                FrameDisplay frameDisplay = gameDisplay.getFrame(j);
+                Frame frame = bowlingGame.getFrame(j);
+                frameDisplay.setSubtotal(frame.getScoreDisplay());
+                frameDisplay.setFirstBall(frame.getFirstRollDisplay());
+                frameDisplay.setSecondBall(frame.getSecondRollDisplay());
+            }
+        }
     }
 }

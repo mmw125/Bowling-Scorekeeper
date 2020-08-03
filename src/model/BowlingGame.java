@@ -14,7 +14,7 @@ public class BowlingGame {
 		frames = new ArrayList<>(10);
 		Frame frame = new Frame();
 		frames.add(frame);
-		for (int i = 1; i < 9; i++) {
+		for (int i = 1; i < 10; i++) {
 			frame = new Frame(frames.get(i - 1));
 			frames.add(frame);
 			frames.get(i - 1).setNextFrame(frame);
@@ -31,5 +31,9 @@ public class BowlingGame {
 			currentFrame++;
 		}
 		return progress;
+	}
+
+	public Frame getFrame(int frame) {
+		return frames.get(frame);
 	}
 }
