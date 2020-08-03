@@ -23,6 +23,7 @@ import java.awt.event.ComponentListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
+import java.util.List;
 
 import controller.GameTracker;
 
@@ -38,6 +39,7 @@ public class BowlingDisplay {
 	private JFrame frame;
 
 	private final GameTracker tracker;
+	private List<GameDisplay> gameDisplayList = new ArrayList<>();
 
 	/**
 	 * Creates the application with names from nameInput
@@ -69,6 +71,7 @@ public class BowlingDisplay {
             GameDisplay newGame = new GameDisplay(name);
             newGame.panel.setBounds(0, 0, 0, 0);
             scoreContainer.add(newGame.panel);
+			gameDisplayList.add(newGame);
         }
 
 		// Resizes internal components when entire frame is resized
@@ -109,8 +112,18 @@ public class BowlingDisplay {
 			}
 		});
 		frame.setVisible(true);
+		setActivePlayer(0);
 	}
 
+	public GameDisplay getGameDisplay(int i) {
+		return gameDisplayList.get(i);
+	}
+
+	public void setActivePlayer(int activePlayer) {
+		for (int i = 0; i < gameDisplayList.size(); i++) {
+			gameDisplayList.get(i).setActive(i == activePlayer);
+		}
+	}
 
 	/**
 	 * Creates the numbers that mark the rows
@@ -121,7 +134,6 @@ public class BowlingDisplay {
 		private static final long serialVersionUID = 1L;
 
 		NumberRow() {
-
 			setLayout(new BorderLayout(0, 0));
 
 			JPanel leftPadding = new JPanel();

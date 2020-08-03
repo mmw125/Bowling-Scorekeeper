@@ -44,6 +44,7 @@ public class GameTracker {
             advance();
         }
 
+        updateDisplay();
 	}
 	
 	/**
@@ -55,5 +56,10 @@ public class GameTracker {
         if (currentBowler >= games.size()) {
             currentBowler = 0;
         }
-	}
+        display.setActivePlayer(currentBowler);
+    }
+
+    private void updateDisplay() {
+
+    }
 }

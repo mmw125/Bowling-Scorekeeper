@@ -10,6 +10,7 @@ import javax.swing.border.LineBorder;
 
 public class GameDisplay {
 	JPanel panel;
+	private JPanel letterName;
 	private String playerName;
 	private ArrayList<FrameDisplay> frames = new ArrayList<>();
 
@@ -24,7 +25,7 @@ public class GameDisplay {
 		panel.setBackground(Color.BLUE);
 		panel.setLayout(new BorderLayout(0, 0));
 
-		JPanel letterName = new JPanel();
+		letterName = new JPanel();
 		letterName.setBorder(new LineBorder(Color.BLACK));
 		letterName.setBackground(Color.BLUE);
 		letterName.setPreferredSize(new Dimension(100, 10));
@@ -66,5 +67,9 @@ public class GameDisplay {
 
 	public String getName() {
 		return playerName;
+	}
+
+	public void setActive(boolean active) {
+		letterName.setBackground(active ? Color.ORANGE : Color.BLUE);
 	}
 }
