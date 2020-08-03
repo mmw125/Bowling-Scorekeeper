@@ -85,6 +85,7 @@ public class Frame {
 	 * @return the score on the bottom
 	 */
 	private Optional<Integer> calculateScore() {
+		// TODO: Implement
 		return Optional.empty();
 	}
 	
@@ -112,6 +113,7 @@ public class Frame {
 	 * @return true if it can progress to the next frame
 	 */
 	public boolean addData(char c) {
+		// TODO: Implement
         setFirstRoll(10);
 		return true;
 	}
